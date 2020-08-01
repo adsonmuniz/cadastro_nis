@@ -1,0 +1,17 @@
+{
+    "name": "adson/cadastro_nis",
+    "description": "Um sistema gerador de NIS",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Adson Muniz Aguiar",
+            "email": "adsonmuniz@gmail.com"
+        }
+    ],
+    "autoload": {
+	"psr-4": {
+		"App\\": "source"
+	}
+    }, 
+    "require": {}
+}

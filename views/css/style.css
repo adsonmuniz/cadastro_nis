@@ -1,0 +1,116 @@
+*{ margin: 0; padding: 0}
+
+body{
+    width: 100%;
+}
+
+header{
+    height: 80px;
+    background-color: rgb(71, 148, 148); 
+    border-radius: 0.5em; 
+    margin: 5px;
+    position: relative;
+}
+
+header h1{
+    margin: 20px;
+    margin-top: 10px;
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: whitesmoke;
+}
+
+header p {
+    text-align: center;
+    bottom: 10%;
+    left: 15%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: whitesmoke;
+    position: absolute;
+}
+
+#logo{
+    padding-top: 8px;
+    align-content: flex-start;
+    width: 12%;
+    height: 85%;
+}
+
+#menu a{
+    top: 3%;
+    right:5%;
+    position: fixed;
+    background-color: rgb(33, 167, 153);
+    color: whitesmoke;
+    padding: 0.5em 0.5em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 0.5em;
+}
+
+#menu a:hover {
+    background-color: rgb(196, 230, 226);
+}
+
+footer{
+    height: 20px;
+    width: 99%;
+    background-color: rgb(71, 148, 148);
+    border-radius: 0.5em; 
+    margin: 5px;
+    padding-top: 10px;
+    text-align: center;
+    font-family: helvetica,arial;
+    font-size: 13px;
+    color: #333;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+
+a.button {
+    background-color: darkcyan;
+    color: whitesmoke;
+    padding: 1em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a.button:hover {
+    background-color: rgb(196, 230, 226);
+    color: darkcyan;
+}
+
+#search_numNis {
+    height: 45px;
+    margin: 20px; 
+    text-align: center;
+}
+
+#btn_create {
+    bottom: 40px;
+    right: 0;
+    margin: 20px; 
+    position: fixed;
+}
+
+#content {
+    height: 100%;
+}
+
+#content input[type|="submit"] {
+    background-color: darkcyan;
+    color: whitesmoke;
+    padding: 1em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 120px;
+}
+
+#content input[type|="submit"]:hover {
+    background-color: rgb(196, 230, 226);
+    color: darkcyan;
+}
+
