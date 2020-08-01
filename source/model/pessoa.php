@@ -47,6 +47,14 @@ class Pessoa
         return $resultQuery;
     }
     
+    // logica para listar pessoa a partir do id
+    public function getById()
+    {
+        $query = "SELECT * FROM pessoa WHERE id = '$this->id'";
+        $resultQuery = mysqli_query($this->connection(),$query);
+        return $resultQuery;
+    }
+    
     // logica para listar pessoa a partir do nome
     public function getByName()
     {
@@ -59,7 +67,7 @@ class Pessoa
     public function getByNis()
     {
         $query = "SELECT * FROM pessoa WHERE nis = '$this->nis'";
-        $resultQuery = $this->connection()->query($query);//mysqli_query($this->connection(),$query);
+        $resultQuery = mysqli_query($this->connection(),$query);
         return $resultQuery;
     }
 
@@ -84,10 +92,10 @@ class Pessoa
     {
         $server = "localhost:3306";
         $user = "root";
-        $password = "vera0912";
+        $password = "";
         $db = "cadastro_nis";
 
-        $connection = new mysqli($server, $user, $password, $db);// mysqli_connect($server, $user, $password, $db);
+        $connection = mysqli_connect($server, $user, $password, $db);
         return $connection;
     }
 

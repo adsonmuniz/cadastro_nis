@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['createPessoa']) || isset($_POST['editPessoa']) || isset($_POST['search_numNis'])) {
+if (isset($_POST['createPessoa']) || isset($_POST['editPessoa'])) {
     require_once '../source/model/pessoa.php';
 } else {
     require_once 'source/model/pessoa.php';
@@ -14,10 +14,18 @@ class PessoaController
         return $pessoas;
     }
 
+    public function getById($p)
+    {
+        $pessoa = new Pessoa();
+        $pessoa->setId(addslashes($p));
+
+        return $pessoa->getById();
+    }
+
     public function getByName($p)
     {
         $pessoa = new Pessoa();
-        $pessoa->setName($p);
+        $pessoa->setName(addslashes($p));
 
         return $pessoa->getByName();
     }
@@ -25,7 +33,7 @@ class PessoaController
     public function getByNis($p)
     {
         $pessoa = new Pessoa();
-        $pessoa->setNis($p);
+        $pessoa->setNis(addslashes($p));
 
         return $pessoa->getByNis();
     }
@@ -36,7 +44,7 @@ class PessoaController
         $p = addslashes($_POST['nomePessoa']);
         $n = $_POST['numeroNis'];
 
-        $pessoa->setName($p);
+        $pessoa->setName(addslashes($p));
         $pessoa->setNis($n);
 
         $result = $pessoa->save();

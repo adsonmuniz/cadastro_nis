@@ -1,42 +1,42 @@
 <?php
-        if (isset($_POST['search_numNis'])) {
-            $p = $_POST['search_numNis'];
-        } else {
-            $p = 'null';
-        }
+    if (isset($_POST['search_numNis'])) {
+        $p = $_POST['search_numNis'];
+    } else {
+        $p = 'null';
+    }
 
-        require_once '../source/controller/pessoaController.php';
-        
-        $controller = new PessoaController();
-
-        if (strlen($p) < 11) {
-            ?>
-            <div>
-                <span id="error_qtd_caracteres">Você precisa informar os 11 números<span>
-                <input type="button" value="Voltar" onClick="JavaScript: window.history.back();">
-            </div>
-            <?php
-        } else {
-            $resultGet = $controller->getByNis($p);
-
-            if ($resultGet) {
-                ?>
-                <?php
-            } else {
-                ?>
-                <div>
-                    <span id="not_found">NIS não existente!<span>
-                    <input type="button" value="Voltar" onClick="JavaScript: window.history.back();">
-                </div>
-                <?php
-            }
-        }
-?>
-<!-- <h2>Adicionar Pasta</h2>
-<form method="post" action="controller/folderController.php">
-    <input type="text" id="nomePasta" name="nomePasta" placeholder="NOME DA PASTA">
-    <input type="hidden" id="idPai" name="idPai" value="<?php echo($parent) ?>">
+    require_once 'source/controller/pessoaController.php';
     
-    <input type="submit" value="Ok">
-    <input type="button" value="Cancelar" onClick="JavaScript: window.history.back();">
-</form> -->
+    $controller = new PessoaController();
+    ?>
+        <div class="dvData">
+    <?php
+    if (strlen($p) < 11) {
+        ?>
+            <div>
+                <span class="warning">Você precisa informar os 11 números<span>
+            </div>
+        <?php
+    } else {
+        $resultGet = $controller->getByNis($p);
+
+        if (mysqli_num_rows($resultGet) > 0) {
+            while($row = mysqli_fetch_array($resultGet))
+            {
+                echo('<div class="item">
+                    <span><b>Nome:</b> '.$row['name'].'.</span>
+                    <span><b>NIS:</b> '.$row['nis'].'</span>
+                    <a class="button" href="?page=form&i='.$row['id'].'">Editar</a>
+                </div>');
+            }
+        } else {
+            ?>
+                <div>
+                    <span class="warning">NIS não existente!<span>
+                </div>
+            <?php
+        }
+    }
+    ?>
+        <input class="btn_back" type="button" value="Voltar" onClick="JavaScript: window.history.back();">
+    </div>
