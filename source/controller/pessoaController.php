@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['createPessoa']) || isset($_POST['editPessoa'])) {
+if (isset($_POST['createPessoa']) || isset($_POST['editPessoa']) || isset($_POST['id'])) {
     require_once '../source/model/pessoa.php';
 } else {
     require_once 'source/model/pessoa.php';
@@ -38,51 +38,46 @@ class PessoaController
         return $pessoa->getByNis();
     }
 
-    public function inserir()
+    public function inserir($n, $nis)
     {
         $pessoa = new Pessoa();
-        $p = addslashes($_POST['nomePessoa']);
-        $n = $_POST['numeroNis'];
 
-        $pessoa->setName(addslashes($p));
-        $pessoa->setNis($n);
+        $pessoa->setName(addslashes($n));
+        $pessoa->setNis($nis);
 
         $result = $pessoa->save();
         return $result;
     }
 
-    public function editar()
+    public function editar($n, $i)
     {
         $pessoa = new Pessoa();
-        $p = addslashes($_POST['editPessoa']);
-        $i = $_POST['idPessoa'];
 
-        $pessoa->setName($p);
-        $pessoa->setId($i);
+        $pessoa->setName(addslashes($n));
+        $pessoa->setId(addslashes($i));
 
         $pessoa = $pessoa->update();
         return $result;
-
     }
 }
 
-$classPessoaController = new PessoaController();
+// $classPessoaController = new PessoaController();
 
-if (isset($_POST['nomePessoa'])) {
-    $n = $_POST['numeroNis'];
-    $obj = $classPessoaController->inserir();
+// if (isset($_POST['nomePessoa'])) {
+//     $n = $_POST['numeroNis'];
+//     $obj = $classPessoaController->inserir();
     
-    if ($n == 'null' || $ip == 0) {
-        header('location:../index.php?page=home');
-    } else {
-        //header('location:../index.php?page=child&p='.$ip);
-    }
-} else if (isset($_POST['editPessoa'])) {
-    $id = $_POST['idPessoa'];
-    $obj = $classPessoaController->editar();
-    if ($ip == 'null' || $ip == 0) {
-        header('location:../index.php?page=home');
-    } else {
-        //header('location:../index.php?page=child&p='.$ip);
-    }
-}
+//     if ($n == 'null' || $ip == 0) {
+//         header('location:../index.php?page=home');
+//     } else {
+//         //header('location:../index.php?page=child&p='.$ip);
+//     }
+// } else if (isset($_POST['editPessoa'])) {
+//     $id = $_POST['idPessoa'];
+//     $obj = $classPessoaController->editar();
+//     if ($ip == 'null' || $ip == 0) {
+//         header('location:../index.php?page=home');
+//     } else {
+//         //header('location:../index.php?page=child&p='.$ip);
+//     }
+// }
