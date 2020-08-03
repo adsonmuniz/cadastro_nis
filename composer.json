@@ -9,9 +9,9 @@
         }
     ],
     "autoload": {
-	"psr-4": {
-		"App\\": "source"
-	}
+        "psr-4": {
+            "cadastronis\\entity": "source"
+        }
     }, 
     "require": {},
     "require-dev": {

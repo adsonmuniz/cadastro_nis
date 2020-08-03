@@ -1,4 +1,7 @@
 <?php
+
+use cadastronis\entity\PessoaController;
+
     if (isset($_POST['search_numNis'])) {
         $p = $_POST['search_numNis'];
     } else {
@@ -32,7 +35,7 @@
         } else {
             ?>
                 <div>
-                    <span class="warning">NIS não existente!<span>
+                    <span class="warning">Cidadão não encontrado!<span>
                 </div>
             <?php
         }

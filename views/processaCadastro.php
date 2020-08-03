@@ -1,4 +1,6 @@
 <?php
+use cadastronis\entity\PessoaController;
+
 $method = 'create';
 if (isset($_POST['id'])) {
     if ($_POST['id'] == 'null') {

@@ -1,4 +1,6 @@
 <?php
+use cadastronis\entity\PessoaController;
+
 if (isset($_GET['success'])) {
     $status ='success';
 } else if (isset($_GET['error'])) {

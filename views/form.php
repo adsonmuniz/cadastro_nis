@@ -1,4 +1,7 @@
 <?php
+
+use cadastronis\entity\PessoaController;
+
     if (isset($_GET['i'])) {
         $i = $_GET['i'];
     } else {

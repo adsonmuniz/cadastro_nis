@@ -1,4 +1,6 @@
 <?php
+namespace cadastronis\entity;
+
 if (isset($_POST['createPessoa']) || isset($_POST['editPessoa']) || isset($_POST['id'])) {
     require_once '../source/model/pessoa.php';
 } else {
