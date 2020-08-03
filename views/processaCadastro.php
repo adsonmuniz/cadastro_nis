@@ -40,11 +40,43 @@ if (isset($_POST['id'])) {
                 }
             } while ($nisOk == false);
             $controller = new PessoaController();
-            $controller->inserir($nome, $nis);
-            header('location:../index.php?page=status&success');
+            try {
+                $controller->inserir($nome, $nis);
+                $resultGet = $controller->getByNis($nis);
+                while($row = mysqli_fetch_array($resultGet)) {
+                    $i = $row['id'];
+                }
+                header('location:../index.php?page=status&i='.$i.'&success');
+            } catch (Exception $e) {
+                write_log('Exception when create: '.$e);
+                header('location:../index.php?page=status&exception');
+            }
         } else {
-            $editing = $controller->editar($nome, $i);
-            header('location:../index.php?page=status&success');
+            try {
+                $editing = $controller->editar($nome, $i);
+                header('location:../index.php?page=status&i='.$i.'&success');
+            } catch (Exception $e) {
+                write_log('Exception when edit: '.$e);
+                header('location:../index.php?page=status&exception');
+            }
         }
     }
+} else {
+    header('location:../index.php?page=status&error');
+}
+
+/**
+ * Lógica para escrever em arquivo textos as exceções capturadas na aplicação para o devido tratamento.
+ * @param $log_msg - Descreve a exceção capturada.
+ * @return void
+ */
+function write_log($log_msg)
+{
+    $log_filename = "logs";
+    if (!file_exists($log_filename))
+    {
+        mkdir($log_filename, 0777, true);
+    }
+    $log_file_data = $log_filename.'/debug.log';
+    file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
 }

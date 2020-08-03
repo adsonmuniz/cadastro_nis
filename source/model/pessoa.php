@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Classe que reproduz os atributos de uma pessoa na aplicação.
+ */
 class Pessoa 
 {
     private $id;
@@ -9,37 +11,65 @@ class Pessoa
     /**
      * getters e setters
      */
+
+    /**
+     * Função para informar o id do objeto pessoa
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Função para atribuir o id do objeto pessoa
+     * @return void
+     */
     public function setId($identity)
     {
         $this->id = $identity;
     }
 
+    /**
+     * Função para informar o NIS do objeto pessoa
+     * @return string
+     */
     public function getNis()
     {
         return $this->nis;
     }
 
+    /**
+     * Função para atribuir o NIS do objeto pessoa
+     * @return void
+     */
     public function setNis($nis)
     {
         $this->nis= $nis;
     }
 
+    /**
+     * Função para informar o Nome do objeto pessoa
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * Função para atribuir o Nome do objeto pessoa
+     * @return void
+     */
     public function setName($nome)
     {
         $this->name = $nome;
     }
 
-    // logica para listar todas as pessoas cadastradas
+    /**
+     * Lógica para listar todas as pessoas cadastradas
+     * @return array[Pessoa]
+     */
     public function listAll()
     {
         $query = "SELECT * FROM pessoa order by name";
@@ -47,7 +77,11 @@ class Pessoa
         return $resultQuery;
     }
     
-    // logica para listar pessoa a partir do id
+    /**
+     * Lógica para listar a Pessoa a partir do id
+     * @param integer $this->id - É necessário informar no controller o valor do atributo id a ser procurado.
+     * @return Pessoa
+     */
     public function getById()
     {
         $query = "SELECT * FROM pessoa WHERE id = '$this->id'";
@@ -55,7 +89,11 @@ class Pessoa
         return $resultQuery;
     }
     
-    // logica para listar pessoa a partir do nome
+    /**
+     * Lógica para listar a Pessoa a partir do nome
+     * @param string $this->name - É necessário informar no controller o valor do atributo name a ser procurado.
+     * @return Pessoa
+     */
     public function getByName()
     {
         $query = "SELECT * FROM pessoa WHERE name = '$this->name'";
@@ -63,7 +101,11 @@ class Pessoa
         return $resultQuery;
     }
     
-    // logica para listar pessoa a partir do NIS
+    /**
+     * Lógica para listar a Pessoa a partir do NIS
+     * @param string $this->nis - É necessário informar no controller o valor do atributo NIS a ser procurado.
+     * @return Pessoa
+     */
     public function getByNis()
     {
         $query = "SELECT * FROM pessoa WHERE nis = '$this->nis'";
@@ -71,15 +113,25 @@ class Pessoa
         return $resultQuery;
     }
 
-    // logica para salvar a pessoa no banco
+    /**
+     * Lógica para salvar a Pessoa na tabela pessoa no banco de dados
+     * @param string $this->name - É necessário informar no controller o valor do atributo name.
+     * @param string $this->nis - É necessário informar no controller o valor do atributo nis.
+     * @return boolean
+     */
     public function save()
     {
         $query = "INSERT INTO pessoa (name, nis) VALUES ('$this->name','$this->nis')";
         $resultQuery = mysqli_query($this->connection(),$query);
         return $resultQuery;
     }
-    
-    // logica para atualizar o nome da pessoa no banco
+
+    /**
+     * Lógica para atualizar a Pessoa na tabela pessoa no banco de dados
+     * @param string $this->name - É necessário informar no controller o valor do atributo name.
+     * @param string $this->id - É necessário informar no controller o valor do atributo id.
+     * @return boolean
+     */
     public function update()
     {
         $query = "UPDATE pessoa SET name = '$this->name' WHERE id='$this->id'";
@@ -87,7 +139,9 @@ class Pessoa
         return $resultQuery;
     }
 
-    // Connection
+    /**
+     * Função para estabelecer conexão com a instância do banco de dados.
+     */
     private function connection()
     {
         $server = "localhost:3306";
@@ -97,17 +151,5 @@ class Pessoa
 
         $connection = mysqli_connect($server, $user, $password, $db);
         return $connection;
-    }
-
-    public function write_log($log_msg)
-    {
-        $log_filename = "logs";
-        if (!file_exists($log_filename))
-        {
-            mkdir($log_filename, 0777, true);
-        }
-        $log_file_data = $log_filename.'/debug.log';
-        file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
-    
     }
 }

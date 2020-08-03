@@ -4,9 +4,16 @@ if (isset($_POST['createPessoa']) || isset($_POST['editPessoa']) || isset($_POST
 } else {
     require_once 'source/model/pessoa.php';
 }
-  
+
+/**
+ * Classe para comunicação entre front e back-end para objeto Pessoa
+ */
 class PessoaController
 {
+    /**
+     * Lógica para listar todas as pessoas cadastradas
+     * @return array[Pessoa]
+     */
     public function listar()
     {
         $pessoa = new Pessoa();
@@ -14,30 +21,51 @@ class PessoaController
         return $pessoas;
     }
 
-    public function getById($p)
+    /**
+     * Lógica para listar a Pessoa a partir do id
+     * @param integer $i - Valor do atributo id a ser procurado.
+     * @return Pessoa
+     */
+    public function getById($i)
     {
         $pessoa = new Pessoa();
-        $pessoa->setId(addslashes($p));
+        $pessoa->setId(addslashes($i));
 
         return $pessoa->getById();
     }
 
-    public function getByName($p)
+    /**
+     * Lógica para listar a Pessoa a partir do nome
+     * @param string $n - Valor do atributo name a ser procurado.
+     * @return Pessoa
+     */
+    public function getByName($n)
     {
         $pessoa = new Pessoa();
-        $pessoa->setName(addslashes($p));
+        $pessoa->setName(addslashes($n));
 
         return $pessoa->getByName();
     }
 
-    public function getByNis($p)
+    /**
+     * Lógica para listar a Pessoa a partir do NIS
+     * @param string $n - Valor do atributo NIS a ser procurado.
+     * @return Pessoa
+     */
+    public function getByNis($n)
     {
         $pessoa = new Pessoa();
-        $pessoa->setNis(addslashes($p));
+        $pessoa->setNis(addslashes($n));
 
         return $pessoa->getByNis();
     }
 
+    /**
+     * Lógica para salvar a Pessoa na tabela pessoa no banco de dados
+     * @param string $n - É necessário informar o valor do atributo name.
+     * @param string $nis - É necessário informar o valor do atributo nis.
+     * @return boolean
+     */
     public function inserir($n, $nis)
     {
         $pessoa = new Pessoa();
@@ -49,6 +77,12 @@ class PessoaController
         return $result;
     }
 
+    /**
+     * Lógica para atualizar a Pessoa na tabela pessoa no banco de dados
+     * @param string $n - É necessário informar o valor do atributo name.
+     * @param string $i - É necessário informar o valor do atributo id.
+     * @return boolean
+     */
     public function editar($n, $i)
     {
         $pessoa = new Pessoa();
@@ -60,24 +94,3 @@ class PessoaController
         return $result;
     }
 }
-
-// $classPessoaController = new PessoaController();
-
-// if (isset($_POST['nomePessoa'])) {
-//     $n = $_POST['numeroNis'];
-//     $obj = $classPessoaController->inserir();
-    
-//     if ($n == 'null' || $ip == 0) {
-//         header('location:../index.php?page=home');
-//     } else {
-//         //header('location:../index.php?page=child&p='.$ip);
-//     }
-// } else if (isset($_POST['editPessoa'])) {
-//     $id = $_POST['idPessoa'];
-//     $obj = $classPessoaController->editar();
-//     if ($ip == 'null' || $ip == 0) {
-//         header('location:../index.php?page=home');
-//     } else {
-//         //header('location:../index.php?page=child&p='.$ip);
-//     }
-// }

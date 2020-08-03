@@ -13,5 +13,8 @@
 		"App\\": "source"
 	}
     }, 
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpdocumentor/phpdocumentor" : "2.*"
+    }
 }

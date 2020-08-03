@@ -84,6 +84,10 @@ a.button:hover {
     color: darkcyan;
 }
 
+.status {
+    margin-top: 90px;
+}
+
 #search_numNis {
     height: 45px;
     margin: 20px; 
@@ -142,8 +146,17 @@ a.button:hover {
     color: darkcyan;
 }
 
-.warning {
+.success {
     background-color: aquamarine;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+    padding: 25px;
+    border-radius: 0.5em;
+    border: solid 1px;
+}
+
+.warning {
+    background-color: coral;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: larger;
     padding: 25px;
