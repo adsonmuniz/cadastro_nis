@@ -17,14 +17,12 @@ if (isset($_GET['i'])) {
     <div class="dvData">
 <?php
 if ($status == 'success') {
-
     require_once 'source/controller/pessoaController.php';
     $controller = new PessoaController();
     $resultGet = $controller->getById($i);
 
     if (mysqli_num_rows($resultGet) > 0) {
-        while($row = mysqli_fetch_array($resultGet))
-        {
+        while($row = mysqli_fetch_array($resultGet)) {
             echo '<div>
                 <span class="success">
                     Registro salvo com sucesso! 
@@ -56,4 +54,4 @@ if ($status == 'success') {
         <a class="button" href="?page=home">Início</a>';
 }
 ?>
-    </div>
+</div>

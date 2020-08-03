@@ -75,8 +75,7 @@ if (isset($_POST['id'])) {
 function write_log($log_msg)
 {
     $log_filename = "logs";
-    if (!file_exists($log_filename))
-    {
+    if (!file_exists($log_filename)) {
         mkdir($log_filename, 0777, true);
     }
     $log_file_data = $log_filename.'/debug.log';

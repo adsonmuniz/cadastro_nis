@@ -1,5 +1,4 @@
 <?php
-
 namespace cadastronis\entity;
 /**
  * Classe que reproduz os atributos de uma pessoa na aplicação.
